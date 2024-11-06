@@ -15,7 +15,18 @@ and then I understood to use the `plan.txt` file and decoded again using ROT13 c
 Now I checked the metadata for the three pictures, to find the flag but it lead to nowhere. Reading the webpage again, I tried to carry out stenography analysis on the three pictures using an online tool. After researching more I downloaded the `steghide` command using `sudo install apt steghide` command.
 After that I used the command to carry out stenography analysis on the images. It asked for a password so after a while of thinking I got the passphrase to be `DUEDILIGENCE`. Finally, I got the flag from picture3.
 
-![image](https://github.com/user-attachments/assets/058e7df6-8a09-4daf-8e3b-3cd79501e147)
+```
+coolguy24@Vedant-Laptop:~$ cd TFTP
+coolguy24@Vedant-Laptop:~/TFTP$ steghide extract -sf ./picture1.bmp
+Enter passphrase:
+steghide: could not extract any data with that passphrase!
+coolguy24@Vedant-Laptop:~/TFTP$ steghide extract -sf ./picture2.bmp
+Enter passphrase:
+steghide: could not extract any data with that passphrase!
+coolguy24@Vedant-Laptop:~/TFTP$ steghide extract -sf ./picture3.bmp
+Enter passphrase:
+wrote extracted data to "flag.txt".
+```
 
 
 FLAG: `picoCTF{h1dd3n_1n_pLa1n_51GHT_18375919}`
