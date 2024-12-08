@@ -73,3 +73,51 @@ if __name__ == "__main__":
     test(message, "trudeau")
 ```
 
+The encryption is a mix of Diffie-Hellman Key Exchange and XOR encryption.
+
+The `generator` function generates the public key value used in Diffie-Hellman Key Exchange. The `encrypt` function mutiplies the ascii value of the character by the kye and by 311. The `is_prime` function checks if the numbers are prime. The `dynamic_xor_encrypt` function reverses the plaintext, XORs the ASCII value with the text key (trudeau) and converts the resukt back into a character and adds it to the encrypted text. The `test` function, integrates all the of the above function to perform the encryption. 
+
+
+Now to decrypt this encryption, the following code was needed:
+
+```
+def generator(g, x, p):
+    return pow(g, x) % p
+
+def decrypt(cipher, key):
+    decrypted_text = ""
+    for number in cipher:
+        decrypted_num = number // (key * 311)
+        decrypted_text += chr(decrypted_num)
+    return decrypted_text
+
+def dynamic_xor_decrypt(ciphertext, text_key):
+    decrypted_text = ""
+    key_length = len(text_key)
+    for i, char in enumerate(ciphertext):
+        key_char = text_key[i % key_length]
+        decrypted_char = chr(ord(char) ^ ord(key_char))
+        decrypted_text += decrypted_char
+    return decrypted_text
+
+a = 97
+b = 22
+p = 97
+g = 31
+cipher = [151146, 1158786, 1276344, 1360314, 1427490, 1377108, 1074816, 1074816, 386262, 705348, 0, 1393902, 352674, 83970, 1141992, 0, 369468, 1444284, 16794, 1041228, 403056, 453438, 100764, 100764, 285498, 100764, 436644, 856494, 537408, 822906, 436644, 117558, 201528, 285498]
+
+u = generator(g, a, p)
+v = generator(g, b, p)
+shared_key = generator(v, a, p)
+ciphertext = decrypt(cipher, shared_key)
+
+
+original_message = dynamic_xor_decrypt(ciphertext, "trudeau")
+original_message = original_message[::-1]
+
+print(original_message)
+```
+
+This code performs the Diffie-Hellman Key Exchange to obtain the shared key and decodes the cipher into an intermediate XOR string. Then a XOR decryption is applied using the text key (trudeau) and finally the string is reversed to obtain the original message which is the flag. 
+
+`FLAG: picoCTF{custom_d2cr0pt6d_e4530597}`
