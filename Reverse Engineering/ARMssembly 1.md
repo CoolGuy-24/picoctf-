@@ -114,3 +114,13 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
+From this code it becomes clear that the function `func` will return the value at index 7 of the array stack. The calculations performed are:
+
+85 << 6 = 5440
+
+5440/3 = 1813
+
+So therefore a which is the input needs to be 1813 so that the result becomes equal to 0 and the program prints "You win".
+Now converting 1813 into hexadecimal and then padding it to 32 bit we get the flag.
+
+`FLAG: picoCTF{00000715}`
