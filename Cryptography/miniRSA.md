@@ -9,3 +9,16 @@ e: 3
 ciphertext (c): 2205316413931134031074603746928247799030155221252519872650073010782049179856976080512716237308882294226369300412719995904064931819531456392957957122459640736424089744772221933500860936331459280832211445548332429338572369823704784625368933 
 ```
 
+The challenge also had 3 hints:
+
+1st Hint:
+`RSA` [tutorial](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
+
+2nd Hint:
+`How could having too small an e affect the security of this 2048 bit key?`
+
+3rd Hint:
+`Make sure you don't lose precision, the numbers are pretty big (besides the e value)`
+
+I read up on RSA and tried to understand it as much as I could. here is what I have undertsood from it.
+* 
