@@ -37,4 +37,16 @@ Slow-scan TV (SSTV) is an image transmission method first used in the late 1950s
 ```
 The answer to the second clue was `Scotty`
 
-So with all this information I knew that the audio file was meant to transmit images, so all I needed was a SSTV decoder. 
+So with all this information I knew that the audio file was meant to transmit images, so all I needed was a SSTV decoder. I tried using the MSSTV decoder which was meant for windows but it was not giving me any output and I wa shaving trouble using it. So then I tried to clone a GitHub repository but that was also not working.
+
+Finally an app named `Robot36` helped me decode the audio file message into an image. 
+
+![image](https://github.com/user-attachments/assets/63168364-3daf-4c2a-b460-7379b3b5bfa3)
+
+I downloaded this app on my phone and played the audio from my laptop. I set the setting to `Scottie1` and then soon an image started to form. The final image was:
+
+![WhatsApp Image 2024-12-22 at 02 34 20_187559de](https://github.com/user-attachments/assets/b96be652-e431-4ea6-8bd0-d7c563cfca85)
+
+This image clearly had the flag in it, all I had to do was wrap it in the flag format.
+
+`FLAG:picoCTF{beep_boop_im_in_space}`
