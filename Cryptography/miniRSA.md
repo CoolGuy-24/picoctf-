@@ -21,4 +21,62 @@ The challenge also had 3 hints:
 `Make sure you don't lose precision, the numbers are pretty big (besides the e value)`
 
 I read up on RSA and tried to understand it as much as I could. here is what I have undertsood from it.
-* 
+
+ RSA is an asymettric encryption so a public key is known to all where as the private key is known only to the person decrypting the message.
+ 
+*  A message `M` is converted to an integer `m`. This can be done by converting the message into its ASCII Value.
+  
+* The public key is (n, e) and the private key is (n, d).
+>  `n` = `p` x `q`
+> where p and q are very large prime numbers
+
+* `n` should be larger than `m`
+* Next, we need to choose an integer e such that
+  > 1 < e < ϕ(n) and gcd(e, ϕ(n)) = 1, where ϕ(n) = (p-1)*(q-1) is Euler’s totient function. This value of e will be the public key exponent.
+  
+* `d` is calculated using the formula
+  > d × e ≡ 1(modϕ(n))
+ 
+* A ciphertext `c` is obtained by using the formula
+> c = m<sup>e</sup> (mod n)
+
+* Now the private and public key are available
+
+* Decrypt the message using the formula
+  >m = c<sup>d</sup> (mod n)
+  
+
+  After having understood how RSA works I looked at the challenge file again.
+
+  I had the public key, (`n`,`e`) and the ciphertext `c`. Factoring `n` to obtain `p` and `q` would be extremely difficult and would require lots of computing power. So I needed to find another way to get the value of `p` and `q` so that I could get the value of `d` and decrypt the message.
+
+  I looked over at the hints and realised maybe it has got to do something with a low value of `e` and searching up I got to know about a small exponent attack that can be used on RSA.
+
+  [This](https://crypto.stackexchange.com/questions/6713/low-public-exponent-attack-for-rsa) says that for a small public exponent like `e = 3` the valueof m is simply the cube root of `c`. So now all I need to do was find a way to compute the cube of  avery large number. I found a python code to do the same.
+
+```
+def find_invpow(x,n):
+    """Finds the integer component of the n'th root of x,
+    an integer such that y ** n <= x < (y + 1) ** n.
+    """
+    high = 1
+    while high ** n < x:
+        high *= 2
+    low = high/2
+    while low < high:
+        mid = (low + high) // 2
+        if low < mid and mid**n < x:
+            low = mid
+        elif high > mid and mid**n > x:
+            high = mid
+        else:
+            return mid
+    return mid + 1
+  ```
+
+Using this code, I found m to be:
+`m = 13016382529449106065894479374027604750406953699090365388203708028670029596145277`
+
+Now I tried to convert this into text and then I got the flag as:
+
+`FLAG:{}`
