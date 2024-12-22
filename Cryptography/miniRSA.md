@@ -77,6 +77,8 @@ def find_invpow(x,n):
 Using this code, I found m to be:
 `m = 13016382529449106065894479374027604750406953699090365388203708028670029596145277`
 
-Now I tried to convert this into text and then I got the flag as:
+I converted this to hexadecimal: `0x7069636f4354467b6e3333645f615f6c41726733725f655f63636161373737367d`
 
-`FLAG:{}`
+Now I tried to convert this into text and then I got the flag as: 
+
+`FLAG:picoCTF{n33d_a_lArg3r_e_ccaa7776}`
